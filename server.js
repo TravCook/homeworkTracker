@@ -33,7 +33,7 @@ app.get('/api/login', (req, res) => {
           "courseId": 3776
         })
       }).then((response) => {
-        console.log(response.data)
+        // console.log(response.data)
         res.json(response.data)
       })
     })

@@ -1,24 +1,10 @@
 let students = $(".Student")
 
-const getgrades = () => {
-  fetch("https://bootcampspot.com/api/instructor/v1/grades", {
-    "method": "POST",
-    "headers": {
-      'Content-Type': "application/json",
-      'authToken' : token
-    },
-    "body": JSON.stringify({
-      "courseId": 3776
-    })
-  }).then(response => 
-    response.json()
-  )
-  .then(data => {
+const getgrades = (data) => {
     students.each((x) => {
       let unsubmitted = []
       let ungraded = []
       let incomplete = []
-      // console.log(students[x].attributes[1].value)
       for(i=0;i<data.length;i++){
         if(data[i].assignmentTitle.includes("Milestone") || data[i].assignmentTitle.includes("Intro") || data[i].assignmentTitle.includes("Prework")){
 
@@ -38,7 +24,6 @@ const getgrades = () => {
               }
 
             }else{
-              // console.log(data[i].assignmentTitle.split(":")[0])
               const assignment = data[i].assignmentTitle.split(":")[0] + " "
               unsubmitted.push(assignment)
               $(students[x].children[1]).text(unsubmitted)
@@ -47,35 +32,14 @@ const getgrades = () => {
         }
     }
     })
-    
-  })
 }
 
 const getHW = () => {
   fetch('/api/login', {
     "method": "GET",
     "Content-Type": "application/json"
-  }).then(response => {
-    console.log(response)
-  }).then(data => {
-    console.log(data)
-  })
+  }).then((res) => res.json())
+    .then((data) => getgrades(data))
 }
 
 getHW()
-// const login = () => {
-//   fetch('https://bootcampspot.com/api/instructor/v1/login', {
-//     "method": "POST",
-//     "body": JSON.stringify({
-//       "email": process.env.BCS_EMAIL,
-//       "password": process.env.BCS_PASS
-//     })
-//   }).then(response => response.json())
-//   .then(data => {
-//     token = data.authenticationInfo.authToken
-//     getgrades()
-//   })
-// }
-
-// login()
-
