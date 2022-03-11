@@ -15,17 +15,26 @@ const getgrades = (data) => {
                 if(data[i].grade === "Incomplete"){
                   const assignment = data[i].assignmentTitle.split(":")[0] + " "
                   incomplete.push(assignment)
+                  incomplete.sort( (a,b) => {
+                    return a-b;
+                  })
                   $(students[x].children[3]).text(incomplete)
                 }
               }else{
                 const assignment = data[i].assignmentTitle.split(":")[0] + " "
                 ungraded.push(assignment)
+                ungraded.sort( (a,b) => {
+                  return a-b;
+                })
                 $(students[x].children[2]).text(ungraded)
               }
 
             }else{
               const assignment = data[i].assignmentTitle.split(":")[0] + " "
               unsubmitted.push(assignment)
+              unsubmitted.sort( (a,b) => {
+                return a-b;
+              })
               $(students[x].children[1]).text(unsubmitted)
             }
           }
