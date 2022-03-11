@@ -1,4 +1,4 @@
-require('dotenv').config();
+
 let token
 let students = $(".Student")
 
