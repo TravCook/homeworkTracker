@@ -72,3 +72,19 @@ const getHW = () => {
 }
 
 getHW()
+
+$(document).ready(() => {
+  const changeClass = () => {
+    const width = document.body.clientWidth
+    if (width < 1100){
+      $('.studentName').removeClass('col-1')
+      $('.studentName').addClass('col')
+      $('.missingNo').removeClass('col-1')
+      $('.missingNo').addClass('col')
+    }
+  }
+  $(window).resize(()=>{
+    changeClass()
+  })
+  changeClass()
+})

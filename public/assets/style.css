@@ -14,3 +14,15 @@
 .missingNoLabel{
   color: black;
 }
+
+@media (max-width: 1100px){
+  .unsubmitted{
+    display: none
+  }
+  .ungraded{
+    display: none
+  }
+  .incomplete{
+    display: none
+  }
+}
