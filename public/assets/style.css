@@ -1,0 +1,16 @@
+.labelRow{
+  text-align: center;
+  background-color: darkgrey;
+  font-weight: bold;
+}
+.missingNo{
+  text-align: center;
+  font-size: x-large;
+  color: white;
+}
+.studentName{
+  text-align: center
+}
+.missingNoLabel{
+  color: black;
+}

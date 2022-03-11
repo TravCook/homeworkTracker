@@ -5,238 +5,276 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <link type="stylesheet" href="./assets/style.css">
+  <link rel="stylesheet" type="text/css" href="./assets/style.css">
   <title>GT Homework Tracker</title>
 </head>
 <body>
-  <div class="studentList">
-    <div class="row labelRow border border-dark">
-      <div class="col-2 studentName border border-dark">STUDENT NAME</div>
+  <div class="studentList container-fluid">
+    <div class="row labelRow border border-dark sticky-top">
+      <div class="col-1 studentName border border-dark">STUDENT NAME</div>
       <div class="col unsubmitted border border-dark">UNSUBMITTED</div>
       <div class="col ungraded border border-dark">UNGRADED</div>
       <div class="col incomplete border border-dark">INCOMPLETE</div>
+      <div class="col-1 missingNo missingNoLabel border border-dark"># Missing</div>
     </div>
-    <div class="row Student" id="Amy Lightfoot">
-      <div class="col-2 studentName">Amy Lightfoot</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-bottom border-dark" id="Amy Lightfoot">
+      <div class="col-1 studentName">Amy Lightfoot</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="Anthony Chang">
-      <div class="col-2 studentName">Anthony Chang</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="Anthony Chang">
+      <div class="col-1 studentName">Anthony Chang</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="Autumn Fields">
-      <div class="col-2 studentName">Autumn Fields</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="Autumn Fields">
+      <div class="col-1 studentName">Autumn Fields</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="Benjamin Kim">
-      <div class="col-2 studentName">Benjamin Kim</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="Benjamin Kim">
+      <div class="col-1 studentName">Benjamin Kim</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="Brandon Snyder">
-      <div class="col-2 studentName">Brandon Snyder</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="Brandon Snyder">
+      <div class="col-1 studentName">Brandon Snyder</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="Brian Samuels">
-      <div class="col-2 studentName">Brian Samuels</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="Brian Samuels">
+      <div class="col-1 studentName">Brian Samuels</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="CANDICE BAILEY">
-      <div class="col-2 studentName">Candice Bailey</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="CANDICE BAILEY">
+      <div class="col-1 studentName">Candice Bailey</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="Chris Rowe">
-      <div class="col-2 studentName">Chris Rowe</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="Chris Rowe">
+      <div class="col-1 studentName">Chris Rowe</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="Christian Carnevale">
-      <div class="col-2 studentName">Christian Carnevale</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="Christian Carnevale">
+      <div class="col-1 studentName">Christian Carnevale</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="Colin Brindle">
-      <div class="col-2 studentName">Colin Brindle</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="Colin Brindle">
+      <div class="col-1 studentName">Colin Brindle</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="David Gardiner">
-      <div class="col-2 studentName">David Gardiner</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="David Gardiner">
+      <div class="col-1 studentName">David Gardiner</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="Elizabeth Billings">
-      <div class="col-2 studentName">Elizabeth Billings</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="Elizabeth Billings">
+      <div class="col-1 studentName">Elizabeth Billings</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="Eric Hurst">
-      <div class="col-2 studentName">Eric Hurst</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="Eric Hurst">
+      <div class="col-1 studentName">Eric Hurst</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="Ethan Clary">
-      <div class="col-2 studentName">Ethan Clary</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="Ethan Clary">
+      <div class="col-1 studentName">Ethan Clary</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="Hayden Davis">
-      <div class="col-2 studentName">Hayden Davis</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="Hayden Davis">
+      <div class="col-1 studentName">Hayden Davis</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="Jake Kim">
-      <div class="col-2 studentName">Jake Kim</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="Jake Kim">
+      <div class="col-1 studentName">Jake Kim</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="Jalen Atkinson">
-      <div class="col-2 studentName">Jalen Atkinson</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="Jalen Atkinson">
+      <div class="col-1 studentName">Jalen Atkinson</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="James Edwards">
-      <div class="col-2 studentName">James Edwards</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="James Edwards">
+      <div class="col-1 studentName">James Edwards</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="James Gilreath">
-      <div class="col-2 studentName">James Gilreath</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="James Gilreath">
+      <div class="col-1 studentName">James Gilreath</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="Jason Couch">
-      <div class="col-2 studentName">Jason Couch</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="Jason Couch">
+      <div class="col-1 studentName">Jason Couch</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="Jonathan Jones">
-      <div class="col-2 studentName">Jonathan Jones</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="Jonathan Jones">
+      <div class="col-1 studentName">Jonathan Jones</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="Jonathan Miller">
-      <div class="col-2 studentName">Jonathan Miller</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="Jonathan Miller">
+      <div class="col-1 studentName">Jonathan Miller</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="Jordon Blackstone">
-      <div class="col-2 studentName">Jordon Blackstone</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="Jordon Blackstone">
+      <div class="col-1 studentName">Jordon Blackstone</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="Joseph Pugmire">
-      <div class="col-2 studentName">Joseph Pugmire</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="Joseph Pugmire">
+      <div class="col-1 studentName">Joseph Pugmire</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="Lamont Barnett">
-      <div class="col-2 studentName">Lamont Barnett</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="Lamont Barnett">
+      <div class="col-1 studentName">Lamont Barnett</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="Lina Choi">
-      <div class="col-2 studentName">Lina Choi</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="Lina Choi">
+      <div class="col-1 studentName">Lina Choi</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="Maria Brown">
-      <div class="col-2 studentName">Maria Brown</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="Maria Brown">
+      <div class="col-1 studentName">Maria Brown</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="Michael Tingen">
-      <div class="col-2 studentName">Michael Tingen</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="Michael Tingen">
+      <div class="col-1 studentName">Michael Tingen</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="Micrin Carrington Edmondson">
-      <div class="col-2 studentName">Micrin Carrington Edmondson</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="Micrin Carrington Edmondson">
+      <div class="col-1 studentName">Micrin Carrington</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="Noah Brunner">
-      <div class="col-2 studentName">Noah Brunner</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="Noah Brunner">
+      <div class="col-1 studentName">Noah Brunner</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="Noah Gaston">
-      <div class="col-2 studentName">Noah Gaston</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="Noah Gaston">
+      <div class="col-1 studentName">Noah Gaston</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="Robert Slocumbe">
-      <div class="col-2 studentName">Robert Slocumbe</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="Robert Slocumbe">
+      <div class="col-1 studentName">Robert Slocumbe</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="Sarah Gilbreath">
-      <div class="col-2 studentName">Sarah Gilbreath</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="Sarah Gilbreath">
+      <div class="col-1 studentName">Sarah Gilbreath</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="Seamona Stewart">
-      <div class="col-2 studentName">Seamona Stewart</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="Seamona Stewart">
+      <div class="col-1 studentName">Seamona Stewart</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="Sebastian Chunley">
-      <div class="col-2 studentName">Sebastian Chunley</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="Sebastian Chunley">
+      <div class="col-1 studentName">Sebastian Chunley</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="Steve Snavely">
-      <div class="col-2 studentName">Steve Snavely</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="Steve Snavely">
+      <div class="col-1 studentName">Steve Snavely</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
-    <div class="row Student" id="William Skillas">
-      <div class="col-2 studentName">William Skillas</div>
-      <div class="col unsubmitted"></div>
+    <div class="row Student border-top border-bottom border-dark" id="William Skillas">
+      <div class="col-1 studentName">William Skillas</div>
+      <div class="col unsubmitted border-end border-start border-secondary"></div>
       <div class="col ungraded"></div>
-      <div class="col incomplete"></div>
+      <div class="col incomplete border-end border-start border-secondary"></div>
+      <div class="col-1 missingNo"></div>
     </div>
   </div>
 </body>

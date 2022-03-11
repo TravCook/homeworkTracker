@@ -21,7 +21,6 @@ app.get('/api/login', (req, res) => {
         password: process.env.BCS_PASS
       })
     }).then(response => {
-      console.log(response)
       const token = response.data.authenticationInfo.authToken
       axios({
         method: "POST",
