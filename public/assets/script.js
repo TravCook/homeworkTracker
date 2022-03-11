@@ -1,5 +1,3 @@
-
-let token
 let students = $(".Student")
 
 const getgrades = () => {
@@ -53,19 +51,31 @@ const getgrades = () => {
   })
 }
 
-const login = () => {
-  fetch('https://bootcampspot.com/api/instructor/v1/login', {
-    "method": "POST",
-    "body": JSON.stringify({
-      "email": process.env.BCS_EMAIL,
-      "password": process.env.BCS_PASS
-    })
-  }).then(response => response.json())
-  .then(data => {
-    token = data.authenticationInfo.authToken
-    getgrades()
+const getHW = () => {
+  fetch('/api/login', {
+    "method": "GET",
+    "Content-Type": "application/json"
+  }).then(response => {
+    console.log(response)
+  }).then(data => {
+    console.log(data)
   })
 }
 
-login()
+getHW()
+// const login = () => {
+//   fetch('https://bootcampspot.com/api/instructor/v1/login', {
+//     "method": "POST",
+//     "body": JSON.stringify({
+//       "email": process.env.BCS_EMAIL,
+//       "password": process.env.BCS_PASS
+//     })
+//   }).then(response => response.json())
+//   .then(data => {
+//     token = data.authenticationInfo.authToken
+//     getgrades()
+//   })
+// }
+
+// login()
 
