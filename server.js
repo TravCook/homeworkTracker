@@ -13,8 +13,6 @@ app.use(express.static('public'));
 
 app.get('/api/login', (req, res) => {
   console.log("ROUTE HIT")
-  console.log(process.env.BCS_EMAIL)
-  console.log(process.env.BCS_PASS)
     axios({
       method: "POST",
       url: 'https://bootcampspot.com/api/instructor/v1/login',
@@ -23,6 +21,7 @@ app.get('/api/login', (req, res) => {
         "password": process.env.BCS_PASS
       })
     }).then(response => {
+      console.log(response)
       const token = response.data.authenticationInfo.authToken
       axios({
         method: "POST",
