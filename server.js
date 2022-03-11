@@ -5,23 +5,40 @@ require('dotenv').config()
 // Initialize the app and create a port
 const app = express();
 const PORT = process.env.PORT || 3001;
-
+let token
+let courseID
 // Set up body parsing, static, and route middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-app.get('/api/login', (req, res) => {
-  console.log("ROUTE HIT")
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/index.html'));
+})
+
+app.get('/grades', (req, res) => {
+  res.sendFile(path.join(__dirname, '/public/grades.html'));
+})
+
+
+app.post('/api/login', (req, res) => {
     axios({
       method: "POST",
       url: 'https://bootcampspot.com/api/instructor/v1/login',
-      data: JSON.stringify({
-        email: process.env.BCS_EMAIL,
-        password: process.env.BCS_PASS
-      })
+      data: req.body
     }).then(response => {
-      const token = response.data.authenticationInfo.authToken
+      //TODO ADD THE ME ENDPOINT HERE TO GET THE CLASS
+      token = response.data.authenticationInfo.authToken
+    axios({
+      method: "POST",
+        url: 'https://bootcampspot.com/api/instructor/v1/me',
+        headers: {
+          'Content-Type': "application/json",
+          'authToken' : token
+        }
+    }).then((response) => {
+      // console.log(response.data)
+      courseID = response.data.Enrollments[0].courseId
       axios({
         method: "POST",
         url: 'https://bootcampspot.com/api/instructor/v1/grades',
@@ -30,23 +47,15 @@ app.get('/api/login', (req, res) => {
           'authToken' : token
         },
         data: JSON.stringify({
-          "courseId": 3776
+          "courseId": courseID
         })
       }).then((response) => {
-        // console.log(response.data)
         res.json(response.data)
       })
     })
-    // .then(data => {
-    //   console.log(data)
-    //   const token = data.authenticationInfo.authToken
-    //   res.json(token)
-    // })
+    })
 })
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/index.html'));
-})
 
 // Start the server on the port
 app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`));
