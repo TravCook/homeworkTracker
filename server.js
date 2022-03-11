@@ -17,8 +17,8 @@ app.get('/api/login', (req, res) => {
       method: "POST",
       url: 'https://bootcampspot.com/api/instructor/v1/login',
       data: JSON.stringify({
-        "email": process.env.BCS_EMAIL,
-        "password": process.env.BCS_PASS
+        email: process.env.BCS_EMAIL,
+        password: process.env.BCS_PASS
       })
     }).then(response => {
       console.log(response)
