@@ -69,12 +69,12 @@ app.post('/api/login', (req, res) => {
         })
       ])
       .then(axios.spread((data1, data2) => {
-        // console.log(data1.data)
-        // console.log(data2.data)
+        let calendarAssignments = data1.data.calendarAssignments;
+            
         const data = {
-          assignments: data1.data,
-          homeworks: data2.data
-        }
+          assignments: calendarAssignments,
+          homeworks: data2.data,
+        };
         res.send(data)
       }))
     })

@@ -1,7 +1,9 @@
+const testDate = new Date(2022, 6, 25)
+const testMoment = moment(testDate)
 let listOfStudents = [];
-let unsubmitted
-let ungraded
-let incomplete
+let unsubmitted = []
+let ungraded = []
+let incomplete = []
 let dateCheckCond
 let students 
 
@@ -49,75 +51,70 @@ const dateCheck = (assignments) => {
   // }
 }
 const homeworkRender = (data) => {
-  if(data.homework.studentName === students[data.studentIndex].attributes[1].value){
-    if(data.homework.submitted){
-      if(data.homework.grade){
-        if(data.homework.grade === "Incomplete"){
-          const assignment =" " + data.homework.assignmentTitle.split(":")[0]
-          incomplete.push(assignment)
-          incomplete.sort( (a,b) => {
+  students = $(".Student")
+  students.each((x) => {
+    if(data.homework.studentName === students[x].attributes[1].value){
+      if(data.homework.submitted){
+        if(data.homework.grade){
+          if(data.homework.grade === "Incomplete"){
+            const assignment =" " + data.homework.assignmentTitle.split(":")[0]
+            incomplete.push(assignment)
+            incomplete.sort( (a,b) => {
+              return a-b;
+            })
+            $(students[x].children[3]).text(incomplete)
+          }
+        }else{
+          const assignment = " " + data.homework.assignmentTitle.split(":")[0]
+          ungraded.push(assignment)
+          ungraded.sort( (a,b) => {
             return a-b;
           })
-          $(students[data.studentIndex].children[3]).text(incomplete)
+          $(students[x].children[2]).text(ungraded)
         }
       }else{
         const assignment = " " + data.homework.assignmentTitle.split(":")[0]
-        ungraded.push(assignment)
-        ungraded.sort( (a,b) => {
+        unsubmitted.push(assignment)
+        console.log(unsubmitted)
+        unsubmitted.sort( (a,b) => {
           return a-b;
         })
-        $(students[data.studentIndex].children[2]).text(ungraded)
+        $(students[x].children[1]).text(unsubmitted)
       }
-    }else{
-      const assignment = " " + data.homework.assignmentTitle.split(":")[0]
-      unsubmitted.push(assignment)
-      unsubmitted.sort( (a,b) => {
-        return a-b;
-      })
-      $(students[data.studentIndex].children[1]).text(unsubmitted)
+      let unsubmittednum = unsubmitted.length
+      let incompletenum = incomplete.length
+      let missingNo = unsubmittednum + incompletenum
+      let numDiv = $(students[x].children[4])
+      numDiv.text(missingNo)
+      if(missingNo < 2) {
+        numDiv.addClass("table-success")
+      }else if (missingNo === 2){
+        numDiv.addClass("table-warning")
+      }else {
+        numDiv.addClass("table-danger")
+      }
     }
-  }
+  })
 }
 
 //current code that renders values for student rows
 const getgrades = (data) => {
   console.log(data)
-  const testDate = new Date(2022, 6, 25)
-  const testMoment = moment(testDate)
-  students = $(".Student")
-  students.each((x) => {
-    unsubmitted = []
-    ungraded = []
-    incomplete = []
-    for(i=0;i<data.homeworks.length;i++){
-      if(data.homeworks[i].assignmentTitle.includes("Milestone") || data.homeworks[i].assignmentTitle.includes("Intro") || data.homeworks[i].assignmentTitle.includes("Prework") || data.homeworks[i].assignmentTitle.includes("22:")){
-      }else{
-        for(m=0;m<data.assignments.calendarAssignments.length; m++){
-        if(moment().isAfter(data.assignments.calendarAssignments[m].dueDate)){
-          if(data.homeworks[i].assignmentTitle === data.assignments.calendarAssignments[m].title){
+  for(i=0; i<data.homeworks.length;i++){
+    if(data.homeworks[i].assignmentTitle.includes("Milestone") || data.homeworks[i].assignmentTitle.includes("Intro") || data.homeworks[i].assignmentTitle.includes("Prework") || data.homeworks[i].assignmentTitle.includes("22:")){
+    }else{
+      for(m=0;m<data.assignments.length; m++){
+        if(testMoment.isAfter(data.assignments[m].dueDate)){
+            if(data.homeworks[i].assignmentTitle === data.assignments[m].title){
             homeworkRender({
-              homework: data.homeworks[i],
-              studentIndex: x
+              homework: data.homeworks[i]
             })
-          }
+            }
         }else{
         }
       }
-      }
     }
-    let unsubmittednum = unsubmitted.length
-    let incompletenum = incomplete.length
-    let missingNo = unsubmittednum + incompletenum
-    let numDiv = $(students[x].children[4])
-    numDiv.text(missingNo)
-    if(missingNo < 2) {
-      numDiv.addClass("table-success")
-    }else if (missingNo === 2){
-      numDiv.addClass("table-warning")
-    }else {
-      numDiv.addClass("table-danger")
-    }
-  })
+  }
 }
 
 // Event listener for the form submission from the login side
