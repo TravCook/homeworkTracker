@@ -73,7 +73,7 @@ const getgrades = (data) => {
     let ungraded = []
     let incomplete = []
     for(i=0;i<data.length;i++){
-      if(data[i].assignmentTitle.includes("Milestone") || data[i].assignmentTitle.includes("Intro") || data[i].assignmentTitle.includes("Prework")){
+      if(data[i].assignmentTitle.includes("Milestone") || data[i].assignmentTitle.includes("Intro") || data[i].assignmentTitle.includes("Prework") || data[i].assignmentTitle.includes("22:")){
 
       }else{
         if(data[i].studentName === students[x].attributes[1].value){
