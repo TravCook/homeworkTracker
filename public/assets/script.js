@@ -1,6 +1,5 @@
-
-
 let listOfStudents = [];
+
 
 // takes in the filtered student array and renders the student rows in the html file
 const renderStudents = (students) => {
@@ -76,35 +75,37 @@ const getgrades = (data) => {
       if(data[i].assignmentTitle.includes("Milestone") || data[i].assignmentTitle.includes("Intro") || data[i].assignmentTitle.includes("Prework") || data[i].assignmentTitle.includes("22:")){
 
       }else{
-        if(data[i].studentName === students[x].attributes[1].value){
-          if(data[i].submitted){
-            if(data[i].grade){
-              if(data[i].grade === "Incomplete"){
-                const assignment =" " + data[i].assignmentTitle.split(":")[0]
-                incomplete.push(assignment)
-                incomplete.sort( (a,b) => {
+        // if(data[i].assignmentTitle.includes("1: C")){
+          if(data[i].studentName === students[x].attributes[1].value){
+            if(data[i].submitted){
+              if(data[i].grade){
+                if(data[i].grade === "Incomplete"){
+                  const assignment =" " + data[i].assignmentTitle.split(":")[0]
+                  incomplete.push(assignment)
+                  incomplete.sort( (a,b) => {
+                    return a-b;
+                  })
+                  $(students[x].children[3]).text(incomplete)
+                }
+              }else{
+                const assignment = " " + data[i].assignmentTitle.split(":")[0]
+                ungraded.push(assignment)
+                ungraded.sort( (a,b) => {
                   return a-b;
                 })
-                $(students[x].children[3]).text(incomplete)
+                $(students[x].children[2]).text(ungraded)
               }
+
             }else{
               const assignment = " " + data[i].assignmentTitle.split(":")[0]
-              ungraded.push(assignment)
-              ungraded.sort( (a,b) => {
+              unsubmitted.push(assignment)
+              unsubmitted.sort( (a,b) => {
                 return a-b;
               })
-              $(students[x].children[2]).text(ungraded)
+              $(students[x].children[1]).text(unsubmitted)
             }
-
-          }else{
-            const assignment = " " + data[i].assignmentTitle.split(":")[0]
-            unsubmitted.push(assignment)
-            unsubmitted.sort( (a,b) => {
-              return a-b;
-            })
-            $(students[x].children[1]).text(unsubmitted)
           }
-        }
+        // }
       }
     }
     let unsubmittednum = unsubmitted.length

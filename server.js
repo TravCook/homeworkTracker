@@ -27,7 +27,6 @@ app.post('/api/login', (req, res) => {
       url: 'https://bootcampspot.com/api/instructor/v1/login',
       data: req.body
     }).then(response => {
-      //TODO ADD THE ME ENDPOINT HERE TO GET THE CLASS
       token = response.data.authenticationInfo.authToken
     axios({
       method: "POST",
