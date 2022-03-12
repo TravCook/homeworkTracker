@@ -4,32 +4,37 @@ let listOfStudents = [];
 
 // takes in the filtered student array and renders the student rows in the html file
 const renderStudents = (students) => {
-  const studentList = $(".studentList")
+  const studentTable = $(".table")
   students.forEach((student) => {
-    const studentEl = document.createElement('div')
-    $(studentEl).addClass("row Student border-bottom border-dark").attr('id', student)
-    
-    const studentName = document.createElement('div')
-    $(studentName).addClass("col-1 studentName").text(student)
-    studentEl.append(studentName)
+    const studentRow = document.createElement('tr')
+    // $(studentEl).addClass("row Student border-bottom border-dark").attr('id', student)
+    $(studentRow).addClass("Student").attr('id', student)
 
-    const unsubmittedHW = document.createElement('div')
-    $(unsubmittedHW).addClass("col unsubmitted border-end border-start border-secondary")
-    studentEl.append(unsubmittedHW)
+    const studentName = document.createElement('td')
+    // $(studentName).addClass("col-1 studentName").text(student)
+    $(studentName).text(student)
 
-    const ungradedHW = document.createElement('div')
-    $(ungradedHW).addClass("col ungraded border-end border-start border-secondary")
-    studentEl.append(ungradedHW)
+    studentRow.append(studentName)
 
-    const incompleteHW = document.createElement('div')
-    $(incompleteHW).addClass("col incomplete border-end border-start border-secondary")
-    studentEl.append(incompleteHW)
+    const unsubmittedHW = document.createElement('td')
+    // $(unsubmittedHW).addClass("col unsubmitted border-end border-start border-secondary")
 
-    const missing = document.createElement('div')
-    $(missing).addClass("col-1 missingNo")
-    studentEl.append(missing)
+    studentRow.append(unsubmittedHW)
 
-    studentList.append(studentEl)
+    const ungradedHW = document.createElement('td')
+    // $(ungradedHW).addClass("col ungraded border-end border-start border-secondary")
+
+    studentRow.append(ungradedHW)
+
+    const incompleteHW = document.createElement('td')
+    // $(incompleteHW).addClass("col incomplete border-end border-start border-secondary")
+    studentRow.append(incompleteHW)
+
+    const missing = document.createElement('td')
+    // $(missing).addClass("col-1 missingNo")
+    studentRow.append(missing)
+
+    studentTable.append(studentRow)
   })
 }
 
@@ -68,6 +73,7 @@ const filterUniqueStudents = (students) => {
 
 const getgrades = (data) => {
   let students = $(".Student")
+  console.log(students)
   students.each((x) => {
     let unsubmitted = []
     let ungraded = []

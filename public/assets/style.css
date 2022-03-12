@@ -1,32 +1,7 @@
-.labelRow{
-  text-align: center;
-  background-color: darkgrey;
-  font-weight: bold;
-}
-.missingNo{
-  text-align: center;
-  font-size: x-large;
-  color: white;
-}
-.studentName{
-  text-align: center
-}
-.missingNoLabel{
-  color: black;
-}
-
 .hidden{
   display: none
 }
 
-@media (max-width: 1100px){
-  .unsubmitted{
-    display: none
-  }
-  .ungraded{
-    display: none
-  }
-  .incomplete{
-    display: none
-  }
-}
+.studentList {
+  margin: 2em;
+} 
