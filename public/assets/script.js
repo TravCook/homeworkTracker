@@ -1,38 +1,29 @@
-let listOfStudents = [];
+const moment = require("moment");
 
+let listOfStudents = [];
+let unsubmitted
+let ungraded
+let incomplete
+let dateCheckCond
+let students 
 
 // takes in the filtered student array and renders the student rows in the html file
 const renderStudents = (students) => {
   const studentTable = $(".table")
   students.forEach((student) => {
     const studentRow = document.createElement('tr')
-    // $(studentEl).addClass("row Student border-bottom border-dark").attr('id', student)
     $(studentRow).addClass("Student").attr('id', student)
-
     const studentName = document.createElement('td')
-    // $(studentName).addClass("col-1 studentName").text(student)
     $(studentName).text(student)
-
     studentRow.append(studentName)
-
     const unsubmittedHW = document.createElement('td')
-    // $(unsubmittedHW).addClass("col unsubmitted border-end border-start border-secondary")
-
     studentRow.append(unsubmittedHW)
-
     const ungradedHW = document.createElement('td')
-    // $(ungradedHW).addClass("col ungraded border-end border-start border-secondary")
-
     studentRow.append(ungradedHW)
-
     const incompleteHW = document.createElement('td')
-    // $(incompleteHW).addClass("col incomplete border-end border-start border-secondary")
     studentRow.append(incompleteHW)
-
     const missing = document.createElement('td')
-    // $(missing).addClass("col-1 missingNo")
     studentRow.append(missing)
-
     studentTable.append(studentRow)
   })
 }
@@ -48,70 +39,72 @@ const filterUniqueStudents = (students) => {
   return unique;
 };
 
-
-// THIS FUNCTION IS NOW BEING RAN INSIDE THE POST REQUEST ON LINE 152 AFTER THE FORM IS SUBMITTED
-// const getAllStudents = () => {
-//   fetch("/api/login", {
-//     method: "GET",
-//     "Content-Type": "application/json",
-//   })
-//     .then((res) => res.json())
-//     .then((data) => {
-//       for (i = 0; i < data.length; i++) {
-//         listOfStudents.push(data[i].studentName);
-//       }
-//       listOfStudents = filterUniqueStudents(listOfStudents);
-//       renderStudents(listOfStudents)
-//     });
-// };
-
-
+const dateCheck = (assignments) => {
+  console.log(assignments.calendarAssignments)
+  // for(i=0;i<assignments.calendarAssignments.length;i++){
+    if(moment().isAfter(assignments.calendarAssignments[0].dueDate)){
+      dateCheckCond = `data.homework[i].assignmentTitle.includes("1: C")`
+      console.log(dateCheckCond)
+    }else if(moment().isAfter(assignments.calendarAssignments[1].dueDate)){
+      console.log("false")
+    }
+  // }
+}
+const homeworkRender = (data) => {
+  if(data.homework.studentName === students[data.studentIndex].attributes[1].value){
+    if(data.homework.submitted){
+      if(data.homework.grade){
+        if(data.homework.grade === "Incomplete"){
+          const assignment =" " + data.homework.assignmentTitle.split(":")[0]
+          incomplete.push(assignment)
+          incomplete.sort( (a,b) => {
+            return a-b;
+          })
+          $(students[data.studentIndex].children[3]).text(incomplete)
+        }
+      }else{
+        const assignment = " " + data.homework.assignmentTitle.split(":")[0]
+        ungraded.push(assignment)
+        ungraded.sort( (a,b) => {
+          return a-b;
+        })
+        $(students[data.studentIndex].children[2]).text(ungraded)
+      }
+    }else{
+      const assignment = " " + data.homework.assignmentTitle.split(":")[0]
+      unsubmitted.push(assignment)
+      unsubmitted.sort( (a,b) => {
+        return a-b;
+      })
+      $(students[data.studentIndex].children[1]).text(unsubmitted)
+    }
+  }
+}
 
 //current code that renders values for student rows
-
-
 const getgrades = (data) => {
-  let students = $(".Student")
-  console.log(students)
+  console.log(data)
+  const testDate = new Date(2022, 6, 25)
+  const testMoment = moment(testDate)
+  students = $(".Student")
   students.each((x) => {
-    let unsubmitted = []
-    let ungraded = []
-    let incomplete = []
-    for(i=0;i<data.length;i++){
-      if(data[i].assignmentTitle.includes("Milestone") || data[i].assignmentTitle.includes("Intro") || data[i].assignmentTitle.includes("Prework") || data[i].assignmentTitle.includes("22:")){
-
+    unsubmitted = []
+    ungraded = []
+    incomplete = []
+    for(i=0;i<data.homeworks.length;i++){
+      if(data.homeworks[i].assignmentTitle.includes("Milestone") || data.homeworks[i].assignmentTitle.includes("Intro") || data.homeworks[i].assignmentTitle.includes("Prework") || data.homeworks[i].assignmentTitle.includes("22:")){
       }else{
-        // if(data[i].assignmentTitle.includes("1: C")){
-          if(data[i].studentName === students[x].attributes[1].value){
-            if(data[i].submitted){
-              if(data[i].grade){
-                if(data[i].grade === "Incomplete"){
-                  const assignment =" " + data[i].assignmentTitle.split(":")[0]
-                  incomplete.push(assignment)
-                  incomplete.sort( (a,b) => {
-                    return a-b;
-                  })
-                  $(students[x].children[3]).text(incomplete)
-                }
-              }else{
-                const assignment = " " + data[i].assignmentTitle.split(":")[0]
-                ungraded.push(assignment)
-                ungraded.sort( (a,b) => {
-                  return a-b;
-                })
-                $(students[x].children[2]).text(ungraded)
-              }
-
-            }else{
-              const assignment = " " + data[i].assignmentTitle.split(":")[0]
-              unsubmitted.push(assignment)
-              unsubmitted.sort( (a,b) => {
-                return a-b;
-              })
-              $(students[x].children[1]).text(unsubmitted)
-            }
+        for(m=0;m<data.assignments.calendarAssignments.length; m++){
+        if(moment().isAfter(data.assignments.calendarAssignments[m].dueDate)){
+          if(data.homeworks[i].assignmentTitle === data.assignments.calendarAssignments[m].title){
+            homeworkRender({
+              homework: data.homeworks[i],
+              studentIndex: x
+            })
           }
-        // }
+        }else{
+        }
+      }
       }
     }
     let unsubmittednum = unsubmitted.length
@@ -161,12 +154,11 @@ const getHW = (loginCred) => {
     res.json())
     .then((data) => {
       //THIS IS WHERE THE STUDENT RENDERING NEEDS TO HAPPEN
-      for (i = 0; i < data.length; i++) {
-        listOfStudents.push(data[i].studentName);
+      for (i = 0; i < data.homeworks.length; i++) {
+        listOfStudents.push(data.homeworks[i].studentName);
       }
       listOfStudents = filterUniqueStudents(listOfStudents);
       renderStudents(listOfStudents)
-      console.log(data)
       getgrades(data)})
 }
 
