@@ -17,3 +17,17 @@
 .formSubmit{
   margin-top: 1em;
 }
+
+th:first-child, td:first-child
+{
+  position:sticky;
+  left:0px;
+  background-color: rgb(255, 255, 255);
+  border-right: 1px solid #ddd;
+} 
+.tr{
+  position:sticky;
+  top:0px;
+  background-color: rgb(255, 255, 255);
+  border-right: 1px solid #ddd;
+}

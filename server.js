@@ -22,63 +22,63 @@ app.get('/grades', (req, res) => {
 })
 
 
-app.post('/api/login', (req, res) => {
-  axios({
-    method: "POST",
-    url: 'https://bootcampspot.com/api/instructor/v1/login',
-    data: req.body
-  }).then(response => {
-    token = response.data.authenticationInfo.authToken
-    axios({
+app.post('/api/login', async (req, res) => {
+  try{
+    await axios({
       method: "POST",
-      url: 'https://bootcampspot.com/api/instructor/v1/me',
-      headers: {
-        'Content-Type': "application/json",
-        'authToken' : token
-        }
-    }).then((response) => {
-      // console.log(response.data)
-      enrollmentID = response.data.Enrollments[0].id
-      courseID = response.data.Enrollments[0].courseId
-      axios.all([
-        axios({
-          method: "POST",
-          url: 'https://bootcampspot.com/api/instructor/v1/assignments',
-          headers: {
+      url: 'https://bootcampspot.com/api/instructor/v1/login',
+      data: req.body
+    }).then(response => {
+      token = response.data.authenticationInfo.authToken
+      axios({
+        method: "POST",
+        url: 'https://bootcampspot.com/api/instructor/v1/me',
+        headers: {
+          'Content-Type': "application/json",
+          'authToken' : token
+          }
+      }).then(async (response) => {
+        // console.log(response.data)
+        enrollmentID = response.data.Enrollments[0].id
+        courseID = response.data.Enrollments[0].courseId
+        axios.all([
+          await axios({
+            method: "POST",
+            url: 'https://bootcampspot.com/api/instructor/v1/assignments',
+            headers: {
+                'Content-Type': "application/json",
+                'authToken' : token
+              },
+              data: JSON.stringify({
+                "enrollmentId": enrollmentID
+              })
+          }),
+          await axios({
+            method: "POST",
+            url: 'https://bootcampspot.com/api/instructor/v1/grades',
+            headers: {
               'Content-Type': "application/json",
               'authToken' : token
             },
             data: JSON.stringify({
-              "enrollmentId": enrollmentID
+              "courseId": courseID
             })
-        }),
-      // .then((response) => {
-      //   console.log(response.data)
-      //   res.json(response.data)
-      // })
-        axios({
-          method: "POST",
-          url: 'https://bootcampspot.com/api/instructor/v1/grades',
-          headers: {
-            'Content-Type': "application/json",
-            'authToken' : token
-          },
-          data: JSON.stringify({
-            "courseId": courseID
           })
-        })
-      ])
-      .then(axios.spread((data1, data2) => {
-        let calendarAssignments = data1.data.calendarAssignments;
-            
-        const data = {
-          assignments: calendarAssignments,
-          homeworks: data2.data,
-        };
-        res.send(data)
-      }))
+        ])
+        .then(axios.spread((data1, data2) => {
+          let calendarAssignments = data1.data.calendarAssignments;
+              
+          const data = {
+            assignments: calendarAssignments,
+            homeworks: data2.data,
+          };
+          res.send(data)
+        }))
+      })
     })
-  })
+  }catch(err){
+    if(err) throw (err)      
+  }
 })
 
 
