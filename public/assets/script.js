@@ -119,18 +119,11 @@ const getgrades = (data) => {
     let numDiv = $(students[x].children[4])
     numDiv.text(missingNo)
     if(missingNo < 2) {
-      numDiv.css({
-       backgroundColor: "DarkGreen",
-       color: "black"
-      })
+      numDiv.addClass("table-success")
     }else if (missingNo === 2){
-      numDiv.css({
-        backgroundColor: "DarkGoldenRod"
-       })
+      numDiv.addClass("table-warning")
     }else {
-      numDiv.css({
-        backgroundColor: "DarkRed"
-       })
+      numDiv.addClass("table-danger")
     }
   })
 }
@@ -139,7 +132,7 @@ const getgrades = (data) => {
 $(".formSubmit").on('click', (e) => {
   e.preventDefault()
   $(".studentList").removeClass("hidden")
-  $(".loginForm").addClass("hidden")
+  $(".container").addClass("hidden")
   const email = $("#emailInput")
   const password = $("#passwordInput")
   const loginCred = {
