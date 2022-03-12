@@ -1,5 +1,3 @@
-const moment = require("moment");
-
 let listOfStudents = [];
 let unsubmitted
 let ungraded
