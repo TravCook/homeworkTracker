@@ -2,8 +2,9 @@ import React from 'react'
 import Student from '../student/student'
 import './studentTable.css'
 
+
 const StudentTable = (props) => {
-  console.log(props)
+  let studentWork = []
   return (
     <div className="table-responsive studentList hidden">
       <table className="table table-hover table-bordered rounded">
@@ -17,10 +18,17 @@ const StudentTable = (props) => {
           </tr>
         </thead>
         <tbody>
-          {props.studentData.map((name, i) => {
+          {props.studentData.map((name) => {
+            studentWork = []
+            props.homeworkData.map((homework) => {
+              if(homework.studentName === name){
+                studentWork.push(homework)
+              }
+            })
             return(
-              <Student name={name} key={i} />
+              <Student name={name} key={name} homework={studentWork} assignments={props.assignmentData} />
             )
+            
           })}
         </tbody>
       </table>
