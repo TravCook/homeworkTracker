@@ -1,6 +1,7 @@
 {
   "name": "homeworktracker",
   "version": "1.0.0",
+  "homepage": "https://gthomeworktracker.herokuapp.com/",
   "description": "",
   "main": "server/server.js",
   "scripts": {

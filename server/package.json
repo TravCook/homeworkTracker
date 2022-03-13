@@ -1,5 +1,6 @@
 {
   "name": "homeworktracker",
+  "homepage": "https://gthomeworktracker.herokuapp.com/",
   "version": "1.0.0",
   "description": "this is a project used to track the homework status of my current students at the Georgia Tech coding bootcamp",
   "main": "server.js",
