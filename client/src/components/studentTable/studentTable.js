@@ -1,5 +1,6 @@
 import React from 'react'
 import Student from '../student/student'
+import './studentTable.css'
 
 const StudentTable = (props) => {
   console.log(props)
@@ -16,7 +17,11 @@ const StudentTable = (props) => {
           </tr>
         </thead>
         <tbody>
-          {console.log(props.students)}
+          {props.studentData.map((name, i) => {
+            return(
+              <Student name={name} key={i} />
+            )
+          })}
         </tbody>
       </table>
     </div>

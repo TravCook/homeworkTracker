@@ -1,0 +1,10 @@
+th:first-child, td:first-child
+{
+  position:sticky;
+  left:0px;
+  background-color: rgb(255, 255, 255);
+  border-right: 1px solid #ddd;
+} 
+.studentList {
+  margin: 2em;
+}

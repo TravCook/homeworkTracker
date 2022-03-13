@@ -64,30 +64,26 @@ function App() {
         listOfStudents = filterUniqueStudents(listOfStudents);
         setStudents(listOfStudents)
         // getgrades(data)
-      }).then(async () => {
-        // await 
-        // window.location.href = "/grades"
       })
   }
   
-  useEffect(() => {
-    console.log({
-      email: email,
-      password: password,
-      assignments: assignments,
-      students: students,
-      homeworks: homeworks
-    })
-  })
+
+
+  const renderPage = () => {
+    if(students){
+      return(
+        <StudentTable  studentData={students} assignmentData={assignments} homeworkData={homeworks}/>
+      )
+    }else{
+      return(
+        <Login handleClick={loginSubmit} handleEmailChange={handleEmailChange} handlePasswordChange={handlePasswordChange} />
+      )
+    }
+  }
 
   return (
     <div className="App">
-      <Router>
-        <Routes>
-          <Route path="/" element={<Login handleClick={loginSubmit} handleEmailChange={handleEmailChange} handlePasswordChange={handlePasswordChange} />} />
-          <Route path="/grades" element={<StudentTable students={students} />} />
-        </Routes>
-      </Router>
+      {renderPage()}
     </div>
   );
 }
