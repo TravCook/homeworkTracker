@@ -11,16 +11,9 @@ let enrollmentID
 // Set up body parsing, static, and route middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, '../client/build')));
 
-// app.get('/', (req, res) => {
-//   res.sendFile(path.join(__dirname, '../public/index.html'));
-// })
-
-// app.get('/grades', (req, res) => {
-//   res.sendFile(path.join(__dirname, '/public/grades.html'));
-// })
-
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
