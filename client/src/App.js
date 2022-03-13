@@ -11,18 +11,20 @@ function App() {
   const [homeworks, setHomeworks] = useState()
   const [students, setStudents] = useState()
 
+  //keeps the email state value updated
   const handleEmailChange = (event) => {
     const formEmail = event.target.value;
     setEmail(formEmail);
   };
 
+  //keeps the password state value updated
   const handlePasswordChange = (event) => {
     const formPassword = event.target.value;
     setPassword(formPassword);
   };
 
   let listOfStudents = [];
-
+  //this function makes sure only one of each student is in the list of students
   const filterUniqueStudents = (students) => {
     let unique = [];
     for (let i = 0; i < students.length; i++) {
@@ -34,7 +36,7 @@ function App() {
   };
 
 
-
+  //this handles the request for data to the backend
   const loginSubmit = (e) => {
     e.preventDefault()
     const loginCred = {

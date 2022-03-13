@@ -18,6 +18,7 @@ const StudentTable = (props) => {
           </tr>
         </thead>
         <tbody>
+          {/* this renders each student their own row */}
           {props.studentData.map((name) => {
             studentWork = []
             props.homeworkData.map((homework) => {
