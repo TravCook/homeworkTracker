@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import './App.css';
 import Login from "./components/login/login.js"
-import { LoginProvider } from './utils/loginContext';
+import StudentTable from './components/studentTable/studentTable.js';
 
 function App() {
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
+  const [assignments, setAssignments] = useState()
+  const [homeworks, setHomeworks] = useState()
+  const [students, setStudents] = useState()
 
   const handleEmailChange = (event) => {
     const formEmail = event.target.value;
@@ -37,7 +41,6 @@ function App() {
     email: email,
     password: password
     }
-    console.log(loginCred)
     const body = {
       email: loginCred.email,
       password: loginCred.password
@@ -49,28 +52,42 @@ function App() {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(body)
-    }).then((res) => 
-      res.json())
+    }).then(async (res) => 
+      await res.json())
       .then((data) => {
-        console.log(data)
+        setHomeworks(data.homeworks)
+        setAssignments(data.assignments)
         //THIS IS WHERE THE STUDENT RENDERING NEEDS TO HAPPEN
         for (let i = 0; i < data.homeworks.length; i++) {
           listOfStudents.push(data.homeworks[i].studentName);
         }
         listOfStudents = filterUniqueStudents(listOfStudents);
-        console.log(listOfStudents)
+        setStudents(listOfStudents)
         // getgrades(data)
+      }).then(async () => {
+        // await 
+        // window.location.href = "/grades"
       })
   }
   
-
-
+  useEffect(() => {
+    console.log({
+      email: email,
+      password: password,
+      assignments: assignments,
+      students: students,
+      homeworks: homeworks
+    })
+  })
 
   return (
     <div className="App">
-      <LoginProvider>
-        <Login handleClick={loginSubmit} handleEmailChange={handleEmailChange} handlePasswordChange={handlePasswordChange}></Login>
-      </LoginProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Login handleClick={loginSubmit} handleEmailChange={handleEmailChange} handlePasswordChange={handlePasswordChange} />} />
+          <Route path="/grades" element={<StudentTable students={students} />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

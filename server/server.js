@@ -13,13 +13,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/index.html'));
-})
+// app.get('/', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../public/index.html'));
+// })
 
-app.get('/grades', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public/grades.html'));
-})
+// app.get('/grades', (req, res) => {
+//   res.sendFile(path.join(__dirname, '/public/grades.html'));
+// })
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
 
 
 app.post('/api/login', async (req, res) => {
