@@ -1,0 +1,19 @@
+{
+  "name": "homeworktracker",
+  "version": "1.0.0",
+  "description": "this is a project used to track the homework status of my current students at the Georgia Tech coding bootcamp",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon server.js"
+  },
+  "author": "travCook",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.26.1",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "moment": "^2.29.1",
+    "nodemon": "^2.0.15"
+  }
+}
