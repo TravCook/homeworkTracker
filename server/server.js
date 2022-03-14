@@ -77,7 +77,6 @@ app.post('/api/grades', async (req, res) => {
       })
     ])
     .then(axios.spread((data1, data2) => {
-      console.log(data1)
       let calendarAssignments = data1.data.calendarAssignments;
           
       const data = {
