@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import './App.css';
 import Login from "./components/login/login.js"
 import StudentTable from './components/studentTable/studentTable.js';
+import ClassesTable from './components/classesTable/classesTable.js'
 
 function App() {
   const [email, setEmail] = useState()
@@ -10,7 +11,11 @@ function App() {
   const [assignments, setAssignments] = useState()
   const [homeworks, setHomeworks] = useState()
   const [students, setStudents] = useState()
-
+  const [classes, setClasses] = useState()
+  const [token, setToken] = useState()
+  const [chosenClass, setChosenClass] = useState()
+  const [enrollId, setEnrollId] = useState()
+  let fetchparams
   //keeps the email state value updated
   const handleEmailChange = (event) => {
     const formEmail = event.target.value;
@@ -35,7 +40,52 @@ function App() {
     return unique;
   };
 
+  const classSelect = async (e) => {
+    e.preventDefault()
+    const fetchenrollid = e.target.parentNode.id
+    setEnrollId(fetchenrollid)
+    const fetchClass = e.target.id
+    setChosenClass(fetchClass)
+    fetchparams = {
+      enrollId: fetchenrollid,
+      chosenClass: fetchClass,
+      token: token
+    }
+    studentDataFetch(fetchparams)
+  }
 
+ 
+
+
+
+  const studentDataFetch = (data) =>{
+    fetch('/api/grades', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "authToken": data.token
+      },
+      body: JSON.stringify({
+        authToken: data.token,
+        courseId: data.chosenClass,
+        enrollId: data.enrollId
+      })
+    }).then((res) => 
+      res.json())
+      .then((data) => {
+        setHomeworks(data.homeworks)
+        setAssignments(data.assignments)
+        //THIS IS WHERE THE STUDENT RENDERING NEEDS TO HAPPEN
+        for (let i = 0; i < data.homeworks.length; i++) {
+          listOfStudents.push(data.homeworks[i].studentName);
+        }
+        listOfStudents = filterUniqueStudents(listOfStudents);
+        setStudents(listOfStudents)
+        // getgrades(data)
+    })
+  }
+
+  
   //this handles the request for data to the backend
   const loginSubmit = (e) => {
     e.preventDefault()
@@ -54,18 +104,24 @@ function App() {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(body)
-    }).then(async (res) => 
-      await res.json())
+    }).then((res) => 
+       res.json())
       .then((data) => {
-        setHomeworks(data.homeworks)
-        setAssignments(data.assignments)
-        //THIS IS WHERE THE STUDENT RENDERING NEEDS TO HAPPEN
-        for (let i = 0; i < data.homeworks.length; i++) {
-          listOfStudents.push(data.homeworks[i].studentName);
-        }
-        listOfStudents = filterUniqueStudents(listOfStudents);
-        setStudents(listOfStudents)
-        // getgrades(data)
+        setToken(data.authenticationInfo.authToken)
+        fetch('/api/me', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            authToken: data.authenticationInfo.authToken
+          })
+        }).then((res) => 
+          res.json())
+          .then((data) => {
+          setClasses(data.Enrollments)
+        })
+        
       })
   }
   
@@ -75,6 +131,10 @@ function App() {
     if(students){
       return(
         <StudentTable  studentData={students} assignmentData={assignments} homeworkData={homeworks}/>
+      )
+    }else if(classes){
+      return(
+        <ClassesTable classes={classes} onClick={classSelect} />
       )
     }else{
       return(
