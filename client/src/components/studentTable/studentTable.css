@@ -1,3 +1,17 @@
+.student-table {
+  background-color: white;
+  margin: 2em;
+  padding: 1em;
+}
+
+.student-table-header {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+}
+
 th:first-child, td:first-child
 {
   position:sticky;
@@ -6,5 +20,5 @@ th:first-child, td:first-child
   border-right: 1px solid #ddd;
 } 
 .studentList {
-  margin: 2em;
+  margin: 1em;
 }

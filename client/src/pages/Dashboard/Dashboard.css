@@ -1,0 +1,7 @@
+.data-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2em;
+}
