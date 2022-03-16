@@ -58,11 +58,9 @@ function App() {
 
   const classSelect = async (e) => {
     e.preventDefault()
-    const fetchenrollid = e.target.id // enrollmentId
+    const fetchenrollid = e.target.options[e.target.selectedIndex].id // enrollmentId
     setEnrollId(fetchenrollid)
-    const fetchClass = e.target.val // courseId
-
-    console.log(`from app : ${fetchenrollid} and ${fetchClass}`);
+    const fetchClass = e.target.options[e.target.selectedIndex].value // courseId
     
     setChosenClass(fetchClass)
     fetchparams = {
@@ -88,7 +86,6 @@ function App() {
     }).then((res) => 
       res.json())
       .then((data) => {
-        console.log(`this is the data: ${JSON.stringify(data)}`);
         setHomeworks(data.homeworks)
         setAssignments(data.assignments)
         //THIS IS WHERE THE STUDENT RENDERING NEEDS TO HAPPEN

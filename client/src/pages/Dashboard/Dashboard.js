@@ -10,11 +10,6 @@ export default function Dashboard(props) {
   return (
     <>
       <DashNavbar />
-      <div className="data-wrapper">
-        <DataContainer />
-        <DataContainer />
-        <DataContainer />
-      </div>
       <StudentTable classes={props.classes} onClick={props.onClick} studentData={props.studentData} assignmentData={props.assignmentData} homeworkData={props.homeworkData}/>
     </>
   );

@@ -10,15 +10,6 @@ export default function DashNavbar() {
     <Navbar bg="light">
       <Container>
         <Navbar.Brand><b>Dashboard</b></Navbar.Brand>
-        <Form className="d-flex">
-          <FormControl
-            type="search"
-            placeholder="Search Student"
-            className="me-2"
-            aria-label="Search"
-          />
-          <Button variant="outline-success">Search</Button>
-        </Form>
       </Container>
     </Navbar>
   );

@@ -9,9 +9,8 @@ const StudentTable = (props) => {
   const createSelectItems = () => {
     let items = [];
     props.classes.map((classItem, index) => {
-      // console.log(`classId: ${JSON.stringify(classItem.courseId)}`);
       items.push(
-        <option key={index} value={index} id={classItem.id} value={classItem.courseId} onSelect={props.onClick}>
+        <option key={index} id={classItem.id} value={classItem.courseId}>
           {JSON.stringify(classItem.course.code)}
         </option>
       );
@@ -25,7 +24,7 @@ const StudentTable = (props) => {
         <h5>
           <b>Student Grades</b>
         </h5>
-        <Form.Select className="w-auto">{createSelectItems()}</Form.Select>
+        <Form.Select className="w-auto" onChange={props.onClick}>{createSelectItems()}</Form.Select>
       </div>
       <div className="table-responsive studentList hidden">
         <table className="table table-hover table-bordered rounded">
