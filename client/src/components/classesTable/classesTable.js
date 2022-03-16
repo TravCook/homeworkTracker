@@ -3,7 +3,6 @@ import Class from '../class/class.js'
 import "./classesTable.css"
 
 const Classes = (props) => {
-  console.log(props)
   return(
     <div className="container classContainer">
       {props.classes.map((classes) => {

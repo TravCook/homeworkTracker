@@ -4,6 +4,8 @@ import './App.css';
 import Login from "./components/login/login.js"
 import StudentTable from './components/studentTable/studentTable.js';
 import ClassesTable from './components/classesTable/classesTable.js'
+import Dashboard from './pages/Dashboard/Dashboard.js';
+import { render } from 'react-dom';
 
 function App() {
   const [email, setEmail] = useState()
@@ -15,7 +17,7 @@ function App() {
   const [token, setToken] = useState()
   const [chosenClass, setChosenClass] = useState()
   const [enrollId, setEnrollId] = useState()
-  let fetchparams
+  let fetchparams;
   //keeps the email state value updated
   const handleEmailChange = (event) => {
     const formEmail = event.target.value;
@@ -40,7 +42,7 @@ function App() {
     return unique;
   };
 
-  const classSelect = async (e) => {
+  const classSelect1 = async (e) => {
     e.preventDefault()
     const fetchenrollid = e.target.parentNode.id
     setEnrollId(fetchenrollid)
@@ -54,9 +56,20 @@ function App() {
     studentDataFetch(fetchparams)
   }
 
- 
-
-
+  const classSelect = async (e) => {
+    e.preventDefault()
+    const fetchenrollid = e.target.options[e.target.selectedIndex].id // enrollmentId
+    setEnrollId(fetchenrollid)
+    const fetchClass = e.target.options[e.target.selectedIndex].value // courseId
+    
+    setChosenClass(fetchClass)
+    fetchparams = {
+      enrollId: fetchenrollid,
+      chosenClass: fetchClass,
+      token: token
+    }
+    studentDataFetch(fetchparams)
+  }
 
   const studentDataFetch = (data) =>{
     fetch('/api/grades', {
@@ -125,16 +138,14 @@ function App() {
       })
   }
   
-
-
   const renderPage = () => {
     if(students){
       return(
-        <StudentTable  studentData={students} assignmentData={assignments} homeworkData={homeworks}/>
+        <Dashboard classes={classes} onClick={classSelect} studentData={students} assignmentData={assignments} homeworkData={homeworks}/>
       )
     }else if(classes){
       return(
-        <ClassesTable classes={classes} onClick={classSelect} />
+        <ClassesTable classes={classes} onClick={classSelect1} />
       )
     }else{
       return(
