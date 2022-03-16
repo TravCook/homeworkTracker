@@ -15,7 +15,7 @@ export default function Dashboard(props) {
         <DataContainer />
         <DataContainer />
       </div>
-      <StudentTable classes={props.classes} onClick={props.classSelect} studentData={props.studentData} assignmentData={props.assignmentData} homeworkData={props.homeworkData}/>
+      <StudentTable classes={props.classes} onClick={props.onClick} studentData={props.studentData} assignmentData={props.assignmentData} homeworkData={props.homeworkData}/>
     </>
   );
 }

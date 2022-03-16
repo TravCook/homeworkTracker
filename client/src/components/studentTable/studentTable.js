@@ -6,9 +6,18 @@ import Form from "react-bootstrap/Form";
 const StudentTable = (props) => {
   let studentWork = [];
 
-  let classSelections = props.classes.map((classItem, index) => {
-    <option key={index}>{JSON.stringify(classItem.course.code)}</option>;
-  })
+  const createSelectItems = () => {
+    let items = [];
+    props.classes.map((classItem, index) => {
+      // console.log(`classId: ${JSON.stringify(classItem.courseId)}`);
+      items.push(
+        <option key={index} value={index} id={classItem.id} value={classItem.courseId} onSelect={props.onClick}>
+          {JSON.stringify(classItem.course.code)}
+        </option>
+      );
+    });
+    return items;
+  };
 
   return (
     <div className="student-table">
@@ -16,9 +25,7 @@ const StudentTable = (props) => {
         <h5>
           <b>Student Grades</b>
         </h5>
-        <Form.Select className="w-auto">
-          {classSelections}
-        </Form.Select>
+        <Form.Select className="w-auto">{createSelectItems()}</Form.Select>
       </div>
       <div className="table-responsive studentList hidden">
         <table className="table table-hover table-bordered rounded">

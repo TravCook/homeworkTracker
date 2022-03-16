@@ -42,11 +42,28 @@ function App() {
     return unique;
   };
 
-  const classSelect = async (e) => {
+  const classSelect1 = async (e) => {
     e.preventDefault()
     const fetchenrollid = e.target.parentNode.id
     setEnrollId(fetchenrollid)
     const fetchClass = e.target.id
+    setChosenClass(fetchClass)
+    fetchparams = {
+      enrollId: fetchenrollid,
+      chosenClass: fetchClass,
+      token: token
+    }
+    studentDataFetch(fetchparams)
+  }
+
+  const classSelect = async (e) => {
+    e.preventDefault()
+    const fetchenrollid = e.target.id // enrollmentId
+    setEnrollId(fetchenrollid)
+    const fetchClass = e.target.val // courseId
+
+    console.log(`from app : ${fetchenrollid} and ${fetchClass}`);
+    
     setChosenClass(fetchClass)
     fetchparams = {
       enrollId: fetchenrollid,
@@ -71,6 +88,7 @@ function App() {
     }).then((res) => 
       res.json())
       .then((data) => {
+        console.log(`this is the data: ${JSON.stringify(data)}`);
         setHomeworks(data.homeworks)
         setAssignments(data.assignments)
         //THIS IS WHERE THE STUDENT RENDERING NEEDS TO HAPPEN
@@ -130,7 +148,7 @@ function App() {
       )
     }else if(classes){
       return(
-        <ClassesTable classes={classes} onClick={classSelect} />
+        <ClassesTable classes={classes} onClick={classSelect1} />
       )
     }else{
       return(
