@@ -9,11 +9,13 @@ const StudentTable = (props) => {
   const createSelectItems = () => {
     let items = [];
     props.classes.map((classItem, index) => {
-      items.push(
-        <option key={index} id={classItem.id} value={classItem.courseId}>
-          {JSON.stringify(classItem.course.code)}
-        </option>
-      );
+      if(classItem.courseRoleId !== 2){
+        items.push(
+          <option key={index} id={classItem.id} value={classItem.courseId}>
+            {JSON.stringify(classItem.course.code)}
+          </option>
+        );
+      }
     });
     return items;
   };
